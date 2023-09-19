@@ -1,0 +1,434 @@
+/* Default navigation styles */
+.nav {
+    position: fixed;
+    background: rgb(0, 0, 0); /* Transparent background */
+    width: 100vw;
+    transition: background-color 0.3s ease; /* Add a smooth transition */
+  }
+  
+  /* Navigation styles with a darker background */
+  .nav.dark {
+    background-color: rgba(0, 0, 0, 0.9); /* Darker background color */
+  }
+  
+  
+  .cover {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 600px;
+  }
+  .inputModal{
+    position: absolute;
+    background-color: #ffffff;
+    left: 50%;
+    transform: translate( -50%);
+    width: 50vw;
+    text-decoration: none;
+    list-style: none;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .inputModal li{
+    padding: 5px;
+    display: flex;
+    justify-content: left;
+    font-family: DM Sans;
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  }
+  .movie-release-date{
+  margin-left: auto;
+  }
+  .movie-name-search{
+    margin-left: 10px;
+    overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: auto;
+  padding-right: 10px;
+  }
+  .Image-display-search{
+    width: 50px;
+    height: 40px;
+    cursor: pointer;
+    }
+  .Header-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px auto;
+    width: 90%;
+  }
+  .logo-container-Home{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 90%;
+    margin-left: 5px;
+  }
+  .logo-name-Home{
+    font-family: DM Sans;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 0em;
+    color: rgb(255, 255, 255);
+    padding-left: 10px;
+  }
+  .tv-logo-Home{
+    width: 50px;
+    height: 50px;
+  }
+  
+  .input{
+  padding: 6px 10px 6px 10px;
+  border-radius: 6px;
+  border: 2px solid #D1D5DB;
+  justify-content: space-between;
+  color: #D1D5DB;
+  width: 45vw;
+  height: 36px;
+  background-color: #ffffff00;
+  }
+  ::placeholder{
+    color: #D1D5DB;
+  }
+  .Right-side{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  .SignIn{
+  font-family: DM Sans;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0em;
+  color: #FFFFFF;
+  }
+  .Menu{
+    width: 36px;
+    height: 36px;
+  padding: 5px 3px 0px 4px;
+  border: 1px solid #D1D5DB;
+  border-radius: 50%;
+  background: #BE123C;
+  
+  }
+  .lower-side{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10rem;
+    width: 95%;
+  }
+  .lower-Right-side{
+    width: 36px;
+  height: 110px;
+  border-radius: 6px;
+  position: relative;
+  right: -5%;
+  }
+  .lower-Right-side p{
+    width: 8px;
+    height: 14px;
+    font-family: DM Sans;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 14px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #9CA3AF;
+  margin-bottom: 1rem;
+  
+  }
+  
+  
+  .header-movie-name{
+    width: 404px;
+    height: 112px;
+    font-family: DM Sans;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #FFFFFF;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
+  }
+  .movie-rating{
+    width: 184px;
+    height: 17px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  .movie-rating-imbd{
+    font-family: DM Sans;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 12px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #FFFFFF;
+    display: flex;
+    margin: 5px;
+    
+  }
+  .movie-rating-imbd p{
+    margin-top: 3px;
+    width: 56px;
+  height: 12px;
+  
+  }
+  .IMBD{
+    width: 35px;
+  height: 17px;
+  margin-right: 10px;
+  }
+  .movie-rating-tomato{
+    font-family: DM Sans;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 12px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #FFFFFF;
+      display: flex;
+      margin: 5px;
+  }
+  .movie-rating-tomato p{
+    margin-top: 3px;
+  }
+  .Tomato{
+    width: 16px;
+    height: 17px;
+  margin-right: 10px; 
+  }
+  .movie-discription{
+    width: 40vw;
+    height: 100px;
+    font-family: DM Sans;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #FFFFFF;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  }
+  
+  .movie-button button{
+    width: Hug (169px);
+    height: Hug (36px);
+    padding: 6px 16px 6px 16px;
+    border-radius: 6px;
+    gap: 8px;
+    background: #BE123C;
+  display: flex;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  }
+  .movie-button button p{
+   padding-top: 2px;
+   
+  }
+  @media screen and (max-width: 1200px) {
+    .inputModal{
+      width: 95vw;
+    }
+  }
+   @media screen and (max-width: 720px) {
+    .cover{
+      min-height: 400px;
+    }
+  
+    .logo {
+      width: 8rem;
+    }
+    
+    .input{
+    width: 40vw;
+    height: 20px;
+    }
+    .logo-name-Home{
+      font-family: DM Sans;
+      font-size: 14px;
+    }
+    .tv-logo-Home{
+      width: 30px;
+      height: 30px;
+    }
+    
+    .SignIn{
+    font-size: 14px;
+    }
+    .Menu{
+      width: 26px;
+      height: 26px;
+    padding: 0px;
+    
+    }
+    .lower-side{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 6rem;
+      width: 95%;
+    }
+    .lower-Right-side{
+      width: 36px;
+    height: 80px;
+    border-radius: 6px;
+    position: relative;
+    right: -5%;
+    }
+    .lower-Right-side p{
+      position: relative;
+      top: -3rem;
+    font-size: 12px;
+    margin-bottom: 1rem;
+    
+    }
+    
+    
+    .header-movie-name{
+      width: 70vw;
+      height: 50px;
+    font-size: 30px;
+    line-height: 30px;
+    margin-bottom: 0rem;
+    }
+    .movie-rating{
+      height: 17px;
+      margin-bottom: 1rem;
+    }
+    .movie-rating-imbd{
+      font-family: DM Sans;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 12px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #FFFFFF;
+      display: flex;
+      margin: 5px;
+      
+    }
+    .movie-rating-imbd p{
+      width: 20vw;
+    height: 10px;
+    
+    }
+   
+    .movie-rating-tomato{
+    font-size: 10px;
+    line-height: 10px;
+    }
+    .movie-rating-tomato p{
+      margin-top: 3px;
+    }
+   
+    .movie-discription{
+      width: 70vw;
+      height: 60px;
+      font-family: DM Sans;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #FFFFFF;
+    margin-bottom: 4rem;
+    }
+    
+    .movie-button button{
+      width: 45vw;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+    }
+    .movie-button button p{
+     padding-top: 2px;
+     
+    }
+  }
+  
+  @media screen and (max-width: 420px) {
+    .cover{
+      min-height: 240px;
+    }
+    .Header-container{
+      width: 95%;
+    }
+    .logo {
+      width: 5rem;
+    }
+    
+    .input{
+    width: 60vw;
+    height: 20px;
+    }
+    .logo-name-Home{
+      display: none;
+    }
+    .SignIn{
+    display: none;
+    }
+    .Menu{
+      width: 20px;
+      height: 20px;
+    padding: 0px;
+    
+    }
+   .MenuIcon{
+    width: 18px;
+    height: 18px;
+    }
+    .header-movie-name{
+      width: 90vw;
+      height: 20px;
+    font-size: 20px;
+    line-height: 18px;
+    margin-top: -1.5rem;
+    }
+    .movie-discription{
+      width: 85vw;
+      height: 30px;
+    font-size: 10px;
+    line-height: 10px;
+    margin-top: 1.5rem;
+    }
+    .movie-rating{
+      height: 10px;
+      margin-bottom: 1rem;
+      margin-top: 1rem;
+    }
+    .movie-button button{
+      width: 45vw;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      font-size: 10px;
+      padding: 2px;
+      margin-top: -2rem;
+    }
+  }

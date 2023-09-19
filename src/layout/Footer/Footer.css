@@ -1,0 +1,51 @@
+footer {
+    width: Hug (492px);
+    height: Hug (145.43px);
+    gap: 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 6rem;
+    margin-bottom: 1rem;
+    
+}
+
+.icons{
+    width: Hug (240px);
+    height: Hug (27.43px);
+    gap: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.botton-nav{
+    width: Hug (492px);
+    height: Hug (23px);
+    gap: 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #111827;
+
+}
+
+.copyright{
+    font-family: DM Sans;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 23px;
+    letter-spacing: 0px;
+    text-align: center;
+    color: #6B7280;
+    margin-bottom: 1rem;
+    width: 100vw;
+}
+@media screen and (max-width: 720px) {
+    footer{
+        width: 80%;
+        margin: auto;
+        margin-top: 2rem;
+      }
+}
