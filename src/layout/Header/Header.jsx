@@ -4,6 +4,7 @@ import './Header.css';
 import Menu from '../../Assests/images/Menu alt 4.png';
 import ImagesApi from '../../services/ImagesApi';
 import Tv from '../../Assests/images/tv.png';
+import { useAuth } from '../../lib/AuthContext';
 
 function Header() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -11,35 +12,13 @@ function Header() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isNavDark, setIsNavDark] = useState(false);
 
+  const { isLoggedIn, logout } = useAuth(); // Access isLoggedIn and logout from AuthContext
 
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 1) {
-        setIsNavDark(true);
-      } else {
-        setIsNavDark(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [all, searchTerm]);
-
-
-
-  const handleInputChange = (event) => {
-    const inputValue = event.target.value;
-    setSearchTerm(inputValue);
-
-    // Check if the input field is empty and reset the search term
-    if (inputValue.trim() === '') {
-      setSearchTerm('');
-      setIsModalOpen(false);
-    }
+  const handleLogout = () => {
+    // Implement your logout logic here
+    logout(); // Call logout to update the authentication status
+    // Refresh the page after logout
+    window.location.reload();
   };
 
   return (
@@ -54,9 +33,10 @@ function Header() {
               type="text"
               placeholder="What do you want to watch?"
               value={searchTerm}
-              onChange={handleInputChange}
               className="input"
             />
+            {loading && <p>Loading...</p>} {/* Show loading message */}
+            {error && <p>Error: {error.message}</p>} {/* Show error message */}
             {searchTerm && (
               <div className="inputModal">
                 {all.map((movie) => (
@@ -78,12 +58,15 @@ function Header() {
             )}
           </div>
           <div className="Right-side">
-            <Link to='#'> <div className="SignIn" > Login </div> </Link>
-            <Link to='#'> <div className="Menu" ><img src={Menu} alt="Menu" className="MenuIcon" /></div> </Link>
+            {isLoggedIn ? ( // Display "Logout" when authenticated
+              <div className="SignIn" onClick={handleLogout}>Logout</div>
+            ) : (
+              <Link to='/login'> <div className="SignIn">Login</div> </Link>
+            )}
+            <Link to='#'> <div className="Menu"><img src={Menu} alt="Menu" className="MenuIcon" /></div> </Link>
           </div>
         </div>
       </nav>
-
     </>
   );
 }
