@@ -52,7 +52,7 @@ function ImageCard() {
 
     setTimeout(() => {
       try {
-        const nameTagExists = images.some((image) => image.nameTag === nameTag);
+        const nameTagExists = images.some((image) => image.nameTag.toLowerCase()  === nameTag.toLowerCase());
 
         if (!nameTagExists) {
           const updatedImages = [...images, { imageUrl, nameTag }];
@@ -116,7 +116,7 @@ function ImageCard() {
       )}
       {error && (
         <div className="error-container">
-          <p>Error: {error}</p>
+          <p>{error}</p>
         </div>
       )}
        

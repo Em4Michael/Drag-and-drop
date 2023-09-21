@@ -1,20 +1,19 @@
 .image-collection {
   margin: auto;
 width: 60vw;
+text-align: center;
+
   }
-  .image-collection
-  {
-    
-  }
+ .Add-Name-Message{
+  color: #05bd14;
+  margin: 0;
+    padding: 10px;
+ }
   .image-collection.drag-over {
     border-color: #007bff;
     
   }
-  
-  .image-collection p {
-    margin: 0;
-    padding: 10px;
-  }
+ 
   
   .image-collection input {
     width: 60vw;
@@ -31,4 +30,8 @@ width: 60vw;
       .image-collection input {
         width: 80vw;
       }
+      .image-collection {
+        margin: auto;
+      width: 90vw;
+        }
   }

@@ -31,10 +31,11 @@ function ImageCollection({ onImageUpload }) {
 
   return (
     <div className="image-collection">
+      <p className='Add-Name-Message'>Enter image Tag Name first before you can choose a file</p>
       <input type="file" accept="image/*" onChange={handleImageChange} disabled={!nameTag} />
       <input
         type="text"
-        placeholder="Enter image Tag name before upload"
+        placeholder="Enter image Tag name"
         value={nameTag}
         onChange={handleNameTagChange}
       />

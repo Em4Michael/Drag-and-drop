@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useAuth } from '../../lib/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 function LoginPage() {
   const { login } = useAuth();
@@ -40,53 +42,62 @@ function LoginPage() {
   return (
     <div className='login'>
       <div className='login-container'>
-      <h1>Login Page</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label className="login-label">Email:</label>
-          <input
-            className="login-input"
-            type="text"
-            name="email"
-            value={credentials.email}
-            onChange={handleInputChange}
-            required
-          />
+        <h1>Login Page</h1>
+        <div className='field-container'>
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label className="login-label">Email:</label>
+              <input
+                className="login-input"
+                type="text"
+                name="email"
+                value={credentials.email}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            <div>
+              <label className="login-label">Password:</label>
+              {showPassword ? (
+                <div className='Password-field'>
+                  <input
+                    className="login-input"
+                    type="text"
+                    name="password"
+                    value={credentials.password}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <FontAwesomeIcon
+                    icon={faEyeSlash}
+                    className="toggle-password-icon"
+                    onClick={toggleShowPassword}
+                  />
+                </div>
+              ) : (
+                <div className='Password-field'>
+                  <input
+                    className="login-input"
+                    type="password"
+                    name="password"
+                    value={credentials.password}
+                    onChange={handleInputChange}
+                    required
+                  />
+                  <FontAwesomeIcon
+                    icon={faEye}
+                    className="toggle-password-icon"
+                    onClick={toggleShowPassword}
+                  />
+                </div>
+              )}
+            </div>
+            <button type="submit">Login</button>
+            {error && <div className="error">
+              <p> {error}</p>
+            </div>}
+          </form>
         </div>
-        <div>
-          <label className="login-label">Password:</label>
-          {showPassword ? (
-            <input
-              className="login-input"
-              type="text"
-              name="password"
-              value={credentials.password}
-              onChange={handleInputChange}
-              required
-            />
-          ) : (
-            <input
-              className="login-input"
-              type="password"
-              name="password"
-              value={credentials.password}
-              onChange={handleInputChange}
-              required
-            />
-          )}
-          <button
-            type="button"
-            className="show-password-button"
-            onClick={toggleShowPassword}
-          >
-            {showPassword ? 'Hide Password' : 'Show Password'}
-          </button>
-        </div>
-        <button type="submit">Login</button>
-        {error && <div className="error">
-          <p> {error}</p>
-        </div>}
-      </form>
       </div>
     </div>
   );

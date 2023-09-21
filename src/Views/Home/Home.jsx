@@ -2,7 +2,6 @@ import React from 'react'
 import Header from '../../layout/Header/Header'
 import Footer from '../../layout/Footer/Footer'
 import ImageCard from '../../components/ImageCard/ImageCard'
-import './Home.css'
 import { useNavigate } from 'react-router-dom';
 function Home() {
 
