@@ -38,11 +38,12 @@ function LoginPage() {
   };
 
   return (
-    <div>
+    <div className='login'>
+      <div className='login-container'>
       <h1>Login Page</h1>
       <form onSubmit={handleSubmit}>
         <div>
-          <label className="login-label">Email/Username:</label>
+          <label className="login-label">Email:</label>
           <input
             className="login-input"
             type="text"
@@ -82,10 +83,11 @@ function LoginPage() {
           </button>
         </div>
         <button type="submit">Login</button>
-        {error && <div className="error-container">
+        {error && <div className="error">
           <p> {error}</p>
         </div>}
       </form>
+      </div>
     </div>
   );
 }

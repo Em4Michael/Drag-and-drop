@@ -8,8 +8,8 @@ const ImagesApi = (search) => {
   const genreUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`;
 
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [loadingImage, setLoading] = useState(true);
+  const [errorImage, setError] = useState(null);
   const [movies, setMovies] = useState([]);
   const [top10, setTop10] = useState([]);
   const [all, setAll] = useState([]);
@@ -63,7 +63,7 @@ const ImagesApi = (search) => {
     };
   }, [apiUrl, apiUrlAll, genreUrl, search]);
 
-  return { data, loading, error, movies, top10, all, genres };
+  return { data, loadingImage, errorImage, movies, top10, all, genres };
 };
 
 export default ImagesApi;

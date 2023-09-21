@@ -2,17 +2,34 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 import Menu from '../../Assests/images/Menu alt 4.png';
-import ImagesApi from '../../services/ImagesApi';
+import Logout from '../../Assests/images/Menu alt 4.png';
 import Tv from '../../Assests/images/tv.png';
 import { useAuth } from '../../lib/AuthContext';
 
 function Header() {
   const [searchTerm, setSearchTerm] = useState('');
-  const { all, top10, loading, error } = ImagesApi(searchTerm);
+  const { isLoggedIn, logout } = useAuth(); // Access isLoggedIn and logout from AuthContext
+  const [images, setImages] = useState([]); // State to hold images from local storage
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isNavDark, setIsNavDark] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const { isLoggedIn, logout } = useAuth(); // Access isLoggedIn and logout from AuthContext
+  const filteredImages = images.filter((image) =>
+  image.nameTag.toLowerCase().includes(searchQuery.toLowerCase())
+);
+
+const handleSearchChange = (e) => {
+  setSearchQuery(e.target.value);
+};
+  useEffect(() => {
+    // Load images from local storage on component mount
+    try {
+      const savedImages = JSON.parse(localStorage.getItem('uploadedImages')) || [];
+      setImages(savedImages);
+    } catch (err) {
+      console.error('Error loading images:', err);
+    }
+  }, []);
 
   const handleLogout = () => {
     // Implement your logout logic here
@@ -31,29 +48,23 @@ function Header() {
           <div className="Middle-side">
             <input
               type="text"
-              placeholder="What do you want to watch?"
-              value={searchTerm}
+              placeholder="Search Image by Name"
+              value={searchQuery}
               className="input"
+              onChange={(e) => setSearchQuery(e.target.value)}
             />
-            {loading && <p>Loading...</p>} {/* Show loading message */}
-            {error && <p>Error: {error.message}</p>} {/* Show error message */}
-            {searchTerm && (
+            {searchQuery && (
               <div className="inputModal">
-                {all.map((movie) => (
-                  <Link to={`/movies/${movie.id}`} key={movie.id}>
-                    <li>
-                      <>
-                        <img
-                          src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path || movie.poster_path}`}
-                          alt="movie-poster"
-                          className="Image-display-search"
-                        />
-                        <div className='movie-name-search'>{movie.title}</div>
-                        <div className='movie-release-date'>{movie.release_date}</div>
-                      </>
-                    </li>
-                  </Link>
-                ))}
+                {filteredImages.map((image, index) => (
+            <div
+              className="image-gallery-item"
+            >
+              <img src={image.imageUrl} alt={`Image ${index}`} />
+              <div className="name-tag">{image.nameTag}</div>
+
+            </div>
+
+          ))}
               </div>
             )}
           </div>
@@ -63,7 +74,7 @@ function Header() {
             ) : (
               <Link to='/login'> <div className="SignIn">Login</div> </Link>
             )}
-            <Link to='#'> <div className="Menu"><img src={Menu} alt="Menu" className="MenuIcon" /></div> </Link>
+            <Link to='/Login'> <div className="Menu"><img src={Menu} alt="Menu" className="MenuIcon" /></div> </Link>
           </div>
         </div>
       </nav>

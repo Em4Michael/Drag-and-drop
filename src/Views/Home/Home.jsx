@@ -18,11 +18,7 @@ function Home() {
   return (
     <div>
       <Header />
-      <div>
-      <h2>Welcome to the Home Page!</h2>
-      <button onClick={handleLogout}>Logout</button>
-      {/* Add content for your home page here */}
-    </div>
+      
       <main>
 
         <div className='cards-holder'>

@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import './ImageCollection.css'; // Create this CSS file for styling
 
 function ImageCollection({ onImageUpload }) {
-   
-    const [selectedImage, setSelectedImage] = useState(null);
+
+  const [selectedImage, setSelectedImage] = useState(null);
   const [nameTag, setNameTag] = useState(''); // Add state for the name tag
 
   const handleImageChange = (e) => {
@@ -29,23 +29,23 @@ function ImageCollection({ onImageUpload }) {
 
   const isUploadDisabled = !nameTag || !selectedImage; // Disable upload if nameTag or selectedImage is empty
 
-    return (
-               <div className="image-collection">
-        <input type="file" accept="image/*" onChange={handleImageChange} disabled={!nameTag} />
-        <input
-          type="text"
-          placeholder="Enter image name/tag"
-          value={nameTag}
-          onChange={handleNameTagChange}
-        />
-        {selectedImage && (
-          <div>
-            <img className="image-for-upload" src={selectedImage} alt="Selected" />
-            <button onClick={handleUpload} disabled={isUploadDisabled}>Upload</button>
-          </div>
-        )}
-      </div>
-    );
+  return (
+    <div className="image-collection">
+      <input type="file" accept="image/*" onChange={handleImageChange} disabled={!nameTag} />
+      <input
+        type="text"
+        placeholder="Enter image name first to upload"
+        value={nameTag}
+        onChange={handleNameTagChange}
+      />
+      {selectedImage && (
+        <div>
+          <img className="image-for-upload" src={selectedImage} alt="Selected" />
+          <button onClick={handleUpload} disabled={isUploadDisabled}>Upload</button>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default ImageCollection;

@@ -3,21 +3,20 @@ import './ImageCard.css'; // CSS for the gallery
 import ImageCollection from '../../Features/ImageCollection';
 import { useAuth } from '../../lib/AuthContext';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import ImagesApi from '../../services/ImagesApi';
 
 function ImageCard() {
   const { isLoggedIn, logout } = useAuth();
   const [images, setImages] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [loading, setLoading] = useState(false); // Loading state
-  const [error, setError] = useState(null); // Error state
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  // Load images from local storage on component mount
   useEffect(() => {
     try {
       const savedImages = JSON.parse(localStorage.getItem('uploadedImages')) || [];
       setImages(savedImages);
     } catch (err) {
-      setError('Error loading images.'); // Handle errors during loading
+      setError('Error loading images.');
     }
   }, []);
 
@@ -25,19 +24,16 @@ function ImageCard() {
     try {
       localStorage.setItem('uploadedImages', JSON.stringify(updatedImages));
     } catch (err) {
-      setError('Error saving images.'); // Handle errors during saving
+      setError('Error saving images.');
     }
   };
 
   const handleImageUpload = (imageUrl, nameTag) => {
-    setLoading(true); // Set loading state to true
-    setError(null); // Clear any previous error
+    setLoading(true);
+    setError(null);
 
-    // Simulate an API call or perform image upload here
-    // For the sake of example, we'll simulate a delay
     setTimeout(() => {
       try {
-        // Check if the nameTag already exists in the images array
         const nameTagExists = images.some((image) => image.nameTag === nameTag);
 
         if (!nameTagExists) {
@@ -48,15 +44,11 @@ function ImageCard() {
           setError(`Image with name "${nameTag}" already exists.`);
         }
       } catch (err) {
-        setError('Error uploading image.'); // Handle errors during upload
+        setError('Error uploading image.');
       } finally {
-        setLoading(false); // Set loading state to false after upload
+        setLoading(false);
       }
-    }, 500); // Simulated 2 seconds delay, replace with actual upload logic
-  };
-
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
+    }, 500);
   };
 
   const deleteImage = (index) => {
@@ -75,21 +67,29 @@ function ImageCard() {
     setImages(updatedImages);
     saveImagesToLocalStorage(updatedImages);
   };
+  const { data, loadingImage, errorImage, movies, top10, all, genres } = ImagesApi();
 
-  const filteredImages = images.filter((image) =>
-    image.nameTag.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  if (loadingImage) {
+    return <div className="loader-container">
+    <div className="circular-loader"></div>
+  </div>
+  }
+
+  if (errorImage) {
+    return<div className="error-container">
+    <p>Error: {errorImage.message}</p>
+</div>;
+  }
+
+  if (!data) {
+    return <p>No data available.</p>;
+  }
+
 
   return (
-    <>
+    <div className="image-gallery-view">
       <div className="image-gallery">
         <ImageCollection onImageUpload={handleImageUpload} />
-        <input
-          type="text"
-          placeholder="Search by name/tag"
-          value={searchQuery}
-          onChange={handleSearchChange}
-        />
       </div>
       {loading && (
         <div className="loader-container">
@@ -98,31 +98,49 @@ function ImageCard() {
       )}
       {error && (
         <div className="error-container">
-          <p>Error: {error.message}</p>
+          <p>Error: {error}</p>
         </div>
       )}
-      {isLoggedIn ? ( // Render drag-and-drop components if user is logged in
+       
+      {isLoggedIn ? (
         <DragDropContext onDragEnd={onDragEnd}>
           <Droppable droppableId="image-gallery">
             {(provided) => (
               <div
                 ref={provided.innerRef}
                 {...provided.droppableProps}
-                className="image-container"
+                className="full-view-container"
               >
-                {filteredImages.map((image, index) => (
-                  <Draggable
-                    key={index}
-                    draggableId={`image-${index}`}
-                    index={index}
-                  >
+               {/*  {top10.map((movie, index) => (
+                  <Draggable key={index} draggableId={`image-${index}`} index={index}>
                     {(provided, snapshot) => (
                       <div
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
-                        className={`image-gallery-item ${snapshot.isDragging ? 'dragging' : ''
-                          }`}
+                        className={`image-gallery-item ${snapshot.isDragging ? 'dragging' : ''}`}
+                      >
+                        <img src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path || movie.poster_path}`} />
+                        <div className="name-tag">{movie.title}</div>
+                        <button
+                          className="delete-button"
+                          onClick={() => deleteImage(index)}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    )}
+                  </Draggable>
+                ))} */}
+
+                {images.map((image, index) => (
+                  <Draggable key={index} draggableId={`image-${index}`} index={index}>
+                    {(provided, snapshot) => (
+                      <div
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        className={`image-gallery-item ${snapshot.isDragging ? 'dragging' : ''}`}
                       >
                         <img src={image.imageUrl} alt={`Image ${index}`} />
                         <div className="name-tag">{image.nameTag}</div>
@@ -142,22 +160,32 @@ function ImageCard() {
           </Droppable>
         </DragDropContext>
       ) : (
-
-        <div className="image-container">
-          {filteredImages.map((image, index) => (
+        <div className="full-view-container">
+           <p>Please login to use the Drag and Drop function and to delete images</p>
+          
+          {images.map((image, index) => (
             <div
               className="image-gallery-item"
             >
               <img src={image.imageUrl} alt={`Image ${index}`} />
               <div className="name-tag">{image.nameTag}</div>
-
             </div>
-
           ))}
-          <p>Please login to use Drag and Drop function and to delete images</p>
+
+{/* {top10.map((movie) => (
+            <div
+              className="image-gallery-item"
+              key={movie.id}
+            >
+              <img src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path || movie.poster_path}`}
+                alt="movie-poster" />
+              <div className="name-tag">{movie.title}</div>
+            </div>
+          ))} */}
+         
         </div>
       )}
-    </>
+    </div>
   );
 }
 

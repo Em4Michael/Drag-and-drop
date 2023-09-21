@@ -1,29 +1,33 @@
-.image-input {
-    width: 300px;
-    height: 200px;
-    border: 2px dashed #ccc;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: border-color 0.3s ease-in-out;
+.image-collection {
+  margin: auto;
+width: 60vw;
   }
-  
-  .image-input.drag-over {
+  .image-collection
+  {
+    
+  }
+  .image-collection.drag-over {
     border-color: #007bff;
     
   }
   
-  .image-input p {
+  .image-collection p {
     margin: 0;
     padding: 10px;
   }
   
-  .image-input input {
-    display: none;
+  .image-collection input {
+    width: 60vw;
   }
   .image-for-upload{
     width: 150px;
     height: 150px;
+  }
+  @media screen and (max-width: 720px) {
+    .image-collection {
+    flex-direction: column;
+      }
+      .image-collection input {
+        width: 80vw;
+      }
   }

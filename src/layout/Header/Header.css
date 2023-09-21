@@ -95,7 +95,8 @@
   justify-content: space-between;
   color: #D1D5DB;
   width: 45vw;
-  height: 36px;
+  height: 30px;
+  margin-top: 5px;
   background-color: #ffffff00;
   }
   ::placeholder{
@@ -114,6 +115,7 @@
   line-height: 24px;
   letter-spacing: 0em;
   color: #FFFFFF;
+  cursor: pointer;
   }
   .Menu{
     width: 36px;
@@ -389,13 +391,13 @@
       display: none;
     }
     .SignIn{
-    display: none;
+    
     }
     .Menu{
       width: 20px;
       height: 20px;
     padding: 0px;
-    
+    display: none;
     }
    .MenuIcon{
     width: 18px;

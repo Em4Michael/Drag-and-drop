@@ -13,9 +13,6 @@
 main {
   padding: 0;
 margin: 0;
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
 padding-top: 6rem;
+min-height: 80vh;
 }
