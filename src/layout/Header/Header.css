@@ -26,7 +26,6 @@
     background-color: #ffffff;
     left: 50%;
     transform: translate( -50%);
-    width: 50vw;
     text-decoration: none;
     list-style: none;
     max-height: 90vh;
@@ -249,11 +248,7 @@
    padding-top: 2px;
    
   }
-  @media screen and (max-width: 1200px) {
-    .inputModal{
-      width: 95vw;
-    }
-  }
+
    @media screen and (max-width: 720px) {
     .cover{
       min-height: 400px;
@@ -387,7 +382,7 @@
     width: 60vw;
     height: 20px;
     }
-    .logo-name-Home{
+    .tv-logo-Home{
       display: none;
     }
     .SignIn{

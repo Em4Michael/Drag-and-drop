@@ -16,7 +16,7 @@ background: #000000;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0rem;
   height: 50vh;
   width: 40vw;
   background: rgba(255, 255, 255, 0.15);
@@ -34,9 +34,9 @@ background: #000000;
 
 
 .container {
-  max-width: 400px;
+  min-width: 40vw;
   margin: 0 auto;
-  padding: 20px;
+  padding: 2px;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -92,7 +92,7 @@ button[type="submit"]:hover {
     align-items: center;
     flex-direction: column;
     height: 50vh;
-    width: 60vw;
+    width: 80vw;
     background: rgba(255, 255, 255, 0.15);
     border-radius: 1rem;
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);

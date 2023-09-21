@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
-import Menu from '../../Assests/images/Menu alt 4.png';
-import Logout from '../../Assests/images/Menu alt 4.png';
-import Tv from '../../Assests/images/tv.png';
+import Menu from '../../Assests/images/images/Menu alt 4.png';
+import Tv from '../../Assests/images/images/tv.png';
 import { useAuth } from '../../lib/AuthContext';
 
 function Header() {
@@ -48,23 +47,22 @@ const handleSearchChange = (e) => {
           <div className="Middle-side">
             <input
               type="text"
-              placeholder="Search Image by Name"
+              placeholder="Search Image by Tag Name"
               value={searchQuery}
               className="input"
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={handleSearchChange}
             />
-            {searchQuery && (
+          {searchQuery && (
               <div className="inputModal">
                 {filteredImages.map((image, index) => (
-            <div
-              className="image-gallery-item"
-            >
-              <img src={image.imageUrl} alt={`Image ${index}`} />
-              <div className="name-tag">{image.nameTag}</div>
-
-            </div>
-
-          ))}
+                  <div
+                    className="image-gallery-item"
+                    key={index}
+                  >
+                    <img src={image.imageUrl} alt={`Image ${index}`} />
+                    <div className="name-tag">{image.nameTag}</div>
+                  </div>
+                ))}
               </div>
             )}
           </div>

@@ -34,7 +34,7 @@ function ImageCollection({ onImageUpload }) {
       <input type="file" accept="image/*" onChange={handleImageChange} disabled={!nameTag} />
       <input
         type="text"
-        placeholder="Enter image name first to upload"
+        placeholder="Enter image Tag name before upload"
         value={nameTag}
         onChange={handleNameTagChange}
       />

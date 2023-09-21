@@ -11,14 +11,32 @@ function ImageCard() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  // Define a static array of images and name tags
+  const staticImages = [
+    { imageUrl: '/images/johnWick.jfif', nameTag: 'John Wick' },
+    { imageUrl: '/images/f119c0eaa735883feb5f8d46dffbb431.jfif', nameTag: 'Bat Man' },
+    { imageUrl: '/images/55bc9e1a21c68b2b31a33af82b284df6.jfif', nameTag: 'Stranger Things' },
+    { imageUrl: '/images/Group 56.png', nameTag: 'Top Gun' },
+    // Add more images and name tags as needed
+  ]; 
+
   useEffect(() => {
+    try {
+      const savedImages = JSON.parse(localStorage.getItem('uploadedImages')) || staticImages; // Use staticImages if local storage is empty
+      setImages(savedImages);
+    } catch (err) {
+      setError('Error loading images.');
+    }
+  }, []);
+
+/*   useEffect(() => {
     try {
       const savedImages = JSON.parse(localStorage.getItem('uploadedImages')) || [];
       setImages(savedImages);
     } catch (err) {
       setError('Error loading images.');
     }
-  }, []);
+  }, []); */
 
   const saveImagesToLocalStorage = (updatedImages) => {
     try {
@@ -111,28 +129,6 @@ function ImageCard() {
                 {...provided.droppableProps}
                 className="full-view-container"
               >
-               {/*  {top10.map((movie, index) => (
-                  <Draggable key={index} draggableId={`image-${index}`} index={index}>
-                    {(provided, snapshot) => (
-                      <div
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        className={`image-gallery-item ${snapshot.isDragging ? 'dragging' : ''}`}
-                      >
-                        <img src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path || movie.poster_path}`} />
-                        <div className="name-tag">{movie.title}</div>
-                        <button
-                          className="delete-button"
-                          onClick={() => deleteImage(index)}
-                        >
-                          Delete
-                        </button>
-                      </div>
-                    )}
-                  </Draggable>
-                ))} */}
-
                 {images.map((image, index) => (
                   <Draggable key={index} draggableId={`image-${index}`} index={index}>
                     {(provided, snapshot) => (
@@ -142,7 +138,9 @@ function ImageCard() {
                         {...provided.dragHandleProps}
                         className={`image-gallery-item ${snapshot.isDragging ? 'dragging' : ''}`}
                       >
-                        <img src={image.imageUrl} alt={`Image ${index}`} />
+                       {/*  <img src={image.imageUrl} alt={`Image ${index}`} /> */}
+                         <img src={`${process.env.PUBLIC_URL}${image.imageUrl}`} alt={`Image ${index}`} /> 
+
                         <div className="name-tag">{image.nameTag}</div>
                         <button
                           className="delete-button"
@@ -161,18 +159,10 @@ function ImageCard() {
         </DragDropContext>
       ) : (
         <div className="full-view-container">
-           <p>Please login to use the Drag and Drop function and to delete images</p>
+        <p>Please you have to be logged in to use the Drag and Drop feature and to delete images</p>
+        <div className="full-view-container">
           
-          {images.map((image, index) => (
-            <div
-              className="image-gallery-item"
-            >
-              <img src={image.imageUrl} alt={`Image ${index}`} />
-              <div className="name-tag">{image.nameTag}</div>
-            </div>
-          ))}
-
-{/* {top10.map((movie) => (
+           {top10.map((movie) => (
             <div
               className="image-gallery-item"
               key={movie.id}
@@ -181,8 +171,17 @@ function ImageCard() {
                 alt="movie-poster" />
               <div className="name-tag">{movie.title}</div>
             </div>
-          ))} */}
+          ))}
+          {images.map((image, index) => (
+            <div
+              className="image-gallery-item"
+            >
+              <img src={image.imageUrl} alt={`Image ${index}`} />
+              <div className="name-tag">{image.nameTag}</div>
+            </div>
+          ))}
          
+        </div>
         </div>
       )}
     </div>

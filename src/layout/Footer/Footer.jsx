@@ -1,8 +1,8 @@
 import React from 'react'
-import fb from '../../Assests/images/fb.png'
-import ig from '../../Assests/images/ig.png'
-import tw from '../../Assests/images/tw (1).png'
-import yt from '../../Assests/images/yt.png'
+import fb from '../../Assests/images/images/fb.png'
+import ig from '../../Assests/images/images/ig.png'
+import tw from '../../Assests//images/images/tw (1).png'
+import yt from '../../Assests//images/images/yt.png'
 import "./Footer.css"
 
 function footer() {
