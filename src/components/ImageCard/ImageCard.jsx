@@ -162,14 +162,13 @@ function ImageCard() {
         <p>Please you have to be logged in to use the Drag and Drop feature and to delete images</p>
         <div className="full-view-container">
           
-           {top10.map((movie) => (
+           {images.map((image, index) => (
             <div
               className="image-gallery-item"
-              key={movie.id}
+              key={index}
             >
-              <img src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path || movie.poster_path}`}
-                alt="movie-poster" />
-              <div className="name-tag">{movie.title}</div>
+              <img src={image.imageUrl} alt={`Image ${index}`} />
+              <div className="name-tag">{image.nameTag}</div>
             </div>
           ))}
           {images.map((image, index) => (
