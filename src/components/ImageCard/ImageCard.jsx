@@ -138,9 +138,9 @@ function ImageCard() {
                         {...provided.dragHandleProps}
                         className={`image-gallery-item ${snapshot.isDragging ? 'dragging' : ''}`}
                       >
-                       {/*  <img src={image.imageUrl} alt={`Image ${index}`} /> */}
-                         <img src={`${process.env.PUBLIC_URL}${image.imageUrl}`} alt={`Image ${index}`} /> 
-
+                         <img src={image.imageUrl} alt={`Image ${index}`} />
+                        {/*  <img src={`${process.env.PUBLIC_URL}${image.imageUrl}`} alt={`Image ${index}`} /> 
+ */}
                         <div className="name-tag">{image.nameTag}</div>
                         <button
                           className="delete-button"
